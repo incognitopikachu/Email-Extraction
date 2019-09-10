@@ -10,26 +10,12 @@ link = "http://www.ex-parrot.com/pdw/Mail-RFC822-Address/Mail-RFC822-Address.htm
 page = urllib.request.urlopen(link)
 soup = BeautifulSoup(page, "html.parser")
 file_text = str(soup)
-# f = urllib.request.urlopen(link)
-# myfile = f.read()
-# file_text = myfile.decode("utf8")
-# print(myfile)
+
 
 pattern = "\w+@(\w+([\.|-]\w+)*)"
 domain_list = re.findall(pattern, file_text)
-print(domain_list)
-# domain_dic = {}
+
 dic = {}
-
-# for domain in domain_list:
-#     # print(domain[0])
-#     if domain[0] in domain_dic:
-#         domain_dic[domain[0]] = domain_dic[domain[0]] + 1
-#
-#     else:
-#         domain_dic[domain[0]] = 1
-
-
 
 for domain in domain_list:
     # print(domain[0])
@@ -37,8 +23,7 @@ for domain in domain_list:
         dic[domain[0].split('.')[0]] = 1 + dic[domain[0].split('.')[0]]
     else:
         dic[domain[0].split('.')[0]] = 1
-# print(dic)
-# print(domain_dic)
+
 
 def PrintMostCommon(mydict, count = 10, freq = 0):
     k = 0
@@ -48,9 +33,7 @@ def PrintMostCommon(mydict, count = 10, freq = 0):
         k = k + 1
 
 
-# print(domain_dic)
 # PrintMostCommon(domain_dic)
-
 user_input = input("Minimum frequency: ")
 freq = int(user_input)
 PrintMostCommon(dic, len(dic.keys()), freq)
